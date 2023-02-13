@@ -434,7 +434,7 @@ void ai_http_update_ota(void *param)
 
     request = malloc(strlen("GET /") + strlen(ota_parame_t->resoure) + strlen(" HTTP/1.1\r\nHost: ")
         + strlen(ota_parame_t->host) + strlen("\r\n\r\n") + 1);
-    sprintf((char*)request, "GET /%s HTTP/1.1\r\nHost: %s\r\n\r\n", ota_parame_t->resoure, ota_parame_t->host);
+    sprintf((char*)request, "GET %s HTTP/1.1\r\nHost: %s\r\n\r\n", ota_parame_t->resoure, ota_parame_t->host);
 
     ret = write(fd, request, strlen((char *)request));
     if(ret < 0){
