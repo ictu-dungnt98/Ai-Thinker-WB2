@@ -443,7 +443,7 @@ void ai_http_update_ota(void *param)
     }
 
     struct timeval receiving_timeout;
-    receiving_timeout.tv_sec = 10;
+    receiving_timeout.tv_sec = 60;
     receiving_timeout.tv_usec = 0;
     if (setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &receiving_timeout, sizeof(receiving_timeout)) < 0) {
         printf("failed to set socket receiving timeout\n");
