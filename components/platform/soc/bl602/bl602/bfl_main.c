@@ -311,7 +311,9 @@ void bfl_main()
 #endif
 
 
-    hosal_uart_init_only_tx(&uart_stdio);
+    // hosal_uart_init_only_tx(&uart_stdio);
+    extern void sw_uart_init(void);
+    sw_uart_init();
     puts("Starting bl602 now....\r\n");
 
     _dump_boot_info();

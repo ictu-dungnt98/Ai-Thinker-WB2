@@ -8,6 +8,7 @@
 //#define CHAR_BIT	8
 //FIXME no ugly declare
 extern int bl_uart_data_send(uint8_t id, uint8_t data);
+extern void sw_uart_send_byte(uint8_t id, uint8_t data);
 
 enum flag {
 	FL_ZERO		= 0x01,	/* Zero modifier */
@@ -830,7 +831,7 @@ void vprint(const char *fmt, va_list argp)
         if (0 < vsprintf(string, fmt, argp)) {
             while ('\0' != (ch = *(str++))) {
 #if !defined(DISABLE_PRINT)
-                bl_uart_data_send(0, ch);
+                sw_uart_send_byte(0, ch);
 #endif
             }
         }
@@ -840,7 +841,7 @@ void vprint(const char *fmt, va_list argp)
 int bl_putchar(int c)
 {
 #if !defined(DISABLE_PRINT)
-    bl_uart_data_send(0, c);
+    sw_uart_send_byte(0, c);
 #endif
     return 0;
 }
@@ -853,7 +854,7 @@ int puts(const char *s)
     if (sys_log_all_enable) {
         while ('\0' != (c = *(s++))) {
 #if !defined(DISABLE_PRINT)
-            bl_uart_data_send(0, c);
+            sw_uart_send_byte(0, c);
 #endif
             counter++;
         }
